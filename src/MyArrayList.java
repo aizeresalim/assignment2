@@ -62,9 +62,9 @@ public class MyArrayList<T> implements MyList {
          * @return void
          * **/
         @Override
-        public void add(Object item, int index) {
+        public void add(Object item, int index){
             checkIndex(index);
-            @@ -42,7 +71,12 @@ public void add(Object item, int index) {
+            @ @ -42, 7 + 71, 12 @@public void add (Object item,int index){
                 arr[index] = (T) item;
                 size++;
             }
@@ -76,9 +76,9 @@ public class MyArrayList<T> implements MyList {
              * **/
             // Complexity: 0(n^2)
             @Override
-            public boolean remove(Object item) {
+            public boolean remove (Object item){
                 int index = indexOf(item);
-                @@ -52,7 +86,11 @@ public boolean remove(Object item) {
+                @ @ -52, 7 + 86, 11 @@public boolean remove (Object item){
                 }
                 return false;
             }
@@ -89,9 +89,9 @@ public class MyArrayList<T> implements MyList {
              * @return boolean
              * **/
             @Override
-            public Object remove(int index) {
+            public Object remove ( int index){
                 checkIndex(index);
-                @@ -63,18 +101,30 @@ public Object remove(int index) {
+                @ @ -63, 18 + 101, 30 @@public Object remove ( int index){
                     this.size--;
                     return temporary;
                 }
@@ -101,7 +101,7 @@ public class MyArrayList<T> implements MyList {
                  * @noparam
                  * @return void
                  * **/
-                public void clear(){
+                public void clear () {
                     this.arr = (T[]) new Object[5];
                     this.size = 0;
                 }
@@ -112,7 +112,7 @@ public class MyArrayList<T> implements MyList {
                  * @return Object
                  * **/
                 @Override
-                public Object get(int index) {
+                public Object get ( int index){
                     checkIndex(index);
                     return arr[index];
                 }
@@ -123,9 +123,9 @@ public class MyArrayList<T> implements MyList {
                  * @return int
                  * **/
                 @Override
-                public int indexOf(Object o) {
+                public int indexOf (Object o){
                     for (int i = 0; i < arr.length; i++) {
-                        @@ -84,13 +134,22 @@ public int indexOf(Object o) {
+                        @ @ -84, 13 + 134, 22 @@public int indexOf (Object o){
                         }
                         return -1;
                     }
@@ -136,7 +136,7 @@ public class MyArrayList<T> implements MyList {
                      * @return int
                      * **/
                     @Override
-                    public int lastIndexOf(Object o) {
+                    public int lastIndexOf (Object o){
                         int index = -1;
                         for (int i = 0; i < arr.length; i++) if (arr[i].equals((T) o) && i > index) index = i;
                         return index;
@@ -147,9 +147,9 @@ public class MyArrayList<T> implements MyList {
                      * @return void
                      * **/
                     @Override
-                    public void sort() {
-                        for(int i = 0; i < size; i++) {
-                            @@ -103,6 +162,11 @@ public void sort() {
+                    public void sort () {
+                        for (int i = 0; i < size; i++) {
+                            @ @ -103, 6 + 162, 11 @@public void sort () {
                             }
                         }
                     }
@@ -158,8 +158,8 @@ public class MyArrayList<T> implements MyList {
                      * @param index
                      * @return void
                      * **/
-                    private void checkIndex(int index){
-                        if(index < 0 || index>=size){
+                    private void checkIndex ( int index){
+                        if (index < 0 || index >= size) {
                             throw new IndexOutOfBoundsException();
                         }
                     }
