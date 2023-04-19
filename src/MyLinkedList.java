@@ -47,11 +47,10 @@ public class MyLinkedList<E> implements MyList{
     public boolean remove(Object item) {
         return false;
     }
-
     /**
      * @function remove удаляет объект из LinkedList
      * @param index индекст элемента для удаления
-     * @return boolean
+     * @return Object
      * **/
     @Override
     public Object remove(int index) {
@@ -72,8 +71,13 @@ public class MyLinkedList<E> implements MyList{
         this.size--;
         return node.val;
     }
+
     @Override
     public void clear() {
+
+        this.head = null;
+        this.tail = null;
+        size = 0;
     }
     /**
      * @function get возвращает объект из LinkedList под его индексом
