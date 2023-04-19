@@ -24,8 +24,8 @@ public class MyLinkedList<E> implements MyList{
         return false;
     }
     /**
-     * @function add добавляет объект в LinkedList
-     * @param item объект для добавления
+     * @function add
+     * @param item
      * @return void
      * **/
     @Override
@@ -47,33 +47,40 @@ public class MyLinkedList<E> implements MyList{
     public boolean remove(Object item) {
         return false;
     }
+
     @Override
     public Object remove(int index) {
         return null;
+        Node toSearch;
+        while (index != 0) {
+            toSearch = toSearch.next;
+            index--;
+        }
     }
+
     @Override
     public void clear() {
-
     }
-
     /**
-     * @function get возвращает объект из LinkedList под его индексом
-     * @param index индекс объекта
+     * @function get
+     * @param index
      * @return E
      * **/
     @Override
     public Object get(int index) {
         Node toSearch;
-        @@ -75,7 +79,7 @@ public Object get(int index) {
+        toSearch = this.head;
+        while (index != 0) {
             toSearch = toSearch.next;
             index--;
         }
-        return (E) toSearch.val;
         return toSearch.val;
 
 
 
+        return toSearch.val;
     }
+
     @Override
     public int indexOf(Object o) {
         return 0;
@@ -84,5 +91,15 @@ public class MyLinkedList<E> implements MyList{
     }
     @Override
     public void sort() {
+
+    }
+    private Node findIndexedNode(int index) {
+        Node toSearch;
+        toSearch = this.head;
+        while (index != 0) {
+            toSearch = toSearch.next;
+            index--;
+        }
+        return toSearch;
     }
 }
