@@ -141,5 +141,5 @@ public class MyArrayList<T> implements MyList {
                                 if(index < 0 || index>=size){
                                     throw new IndexOutOfBoundsException();
                                 }
-                            }
+
                         }
