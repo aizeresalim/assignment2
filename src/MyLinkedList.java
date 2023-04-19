@@ -53,23 +53,27 @@ public class MyLinkedList<E> implements MyList{
     }
     @Override
     public void clear() {
+
     }
 
+    /**
+     * @function get возвращает объект из LinkedList под его индексом
+     * @param index индекс объекта
+     * @return E
+     * **/
     @Override
     public Object get(int index) {
-        return null;
         Node toSearch;
-        toSearch = this.head;
-        while (index != 0) {
+        @@ -75,7 +79,7 @@ public Object get(int index) {
             toSearch = toSearch.next;
             index--;
         }
         return (E) toSearch.val;
+        return toSearch.val;
 
 
 
     }
-
     @Override
     public int indexOf(Object o) {
         return 0;
