@@ -242,4 +242,26 @@ public class MyLinkedList<E> implements MyList{
         }
         return out + "]";
     }
+
+    public void removeDuplicates() {
+        if (size <= 1) {
+            return; // no duplicates possible
+        }
+
+        Node<E> current = head;
+        while (current != null) {
+            Node<E> runner = current.next;
+            while (runner != null && runner.val.equals(current.val)) {
+                runner = runner.next;
+            }
+            current.next = runner;
+            if (runner == null) {
+                tail = current;
+            }
+            current = current.next;
+        }
+    }
+
+
 }
+

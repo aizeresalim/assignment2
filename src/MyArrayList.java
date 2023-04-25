@@ -1,83 +1,92 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+
 
 public class MyArrayList<T> implements MyList {
     private T[] arr;
     private int size;
+
     /**
+     * @return void
      * @function constructor
      * @noparam
-     * @return void
      **/
-    MyArrayList(){
+    MyArrayList() {
         this.arr = (T[]) new Object[5];
         this.size = 0;
     }
+
     /**
+     * @return void
      * @function increaseBufferIfNeeded
      * @noparams
-     * @return void
-     * **/
-    public void increaseBufferIfNeeded(){
-        if(size == arr.length){
-            T[] newArr = (T[]) new Object[arr.length*2];
-            for(int i=0; i< arr.length; i++){
-                newArr[i]=arr[i];
+     **/
+    public void increaseBufferIfNeeded() {
+        if (size == arr.length) {
+            T[] newArr = (T[]) new Object[arr.length * 2];
+            for (int i = 0; i < arr.length; i++) {
+                newArr[i] = arr[i];
             }
             arr = newArr;
         }
     }
+
     /**
+     * @return int
      * @function size
      * @noparams
-     * @return int
-     * **/
+     **/
     @Override
     public int size() {
         return this.size;
     }
+
     /**
-     * @function contains true
      * @param o
      * @return boolean
-     * **/
+     * @function contains true
+     **/
     @Override
     public boolean contains(Object o) {
-        for(T element : arr) {
+        for (T element : arr) {
             if (o.equals(element)) return true;
         }
         return false;
     }
+
     /**
-     * @function add
      * @param item
      * @return void
-     * **/
+     * @function add
+     **/
     @Override
     public void add(Object item) {
         increaseBufferIfNeeded();
         arr[size++] = (T) item;
     }
+
     /**
-     * @function add
      * @param item
      * @param index
      * @return void
-     * **/
+     * @function add
+     **/
     @Override
     public void add(Object item, int index) {
         if (index < 0 || index > size) throw new IndexOutOfBoundsException();
         increaseBufferIfNeeded();
-        for(int i = size; i>index; i--) {
-            arr[i] = arr[i-1];
+        for (int i = size; i > index; i--) {
+            arr[i] = arr[i - 1];
         }
         arr[index] = (T) item;
         size++;
     }
+
     /**
-     * @function remove
      * @param item
      * @return boolean
-     * **/
+     * @function remove
+     **/
     // Complexity: 0(n^2)
     @Override
     public boolean remove(Object item) {
@@ -88,45 +97,49 @@ public class MyArrayList<T> implements MyList {
         }
         return false;
     }
+
     /**
-     * @function remove
      * @param index
      * @return Object
-     * **/
+     * @function remove
+     **/
     @Override
     public Object remove(int index) {
         checkIndex(index);
         T temporary = this.arr[index];
-        for(int i= index + 1; i<=size; i++){
-            arr[i-1] = arr[i];
+        for (int i = index + 1; i <= size; i++) {
+            arr[i - 1] = arr[i];
         }
         this.size--;
         return temporary;
     }
+
     /**
+     * @return void
      * @function clear
      * @noparam
-     * @return void
-     * **/
-    public void clear(){
+     **/
+    public void clear() {
         this.arr = (T[]) new Object[5];
         this.size = 0;
     }
+
     /**
-     * @function get
      * @param index
      * @return Object
-     * **/
+     * @function get
+     **/
     @Override
     public Object get(int index) {
         checkIndex(index);
         return arr[index];
     }
+
     /**
-     * @function indexOf
      * @param o
      * @return int
-     * **/
+     * @function indexOf
+     **/
     @Override
     public int indexOf(Object o) {
         for (int i = 0; i < arr.length; i++) {
@@ -136,30 +149,32 @@ public class MyArrayList<T> implements MyList {
         }
         return -1;
     }
+
     /**
-     * @function lastIndexOf
      * @param o
      * @return int
-     * **/
+     * @function lastIndexOf
+     **/
     @Override
     public int lastIndexOf(Object o) {
         int index = -1;
         for (int i = 0; i < arr.length; i++) if (arr[i].equals((T) o) && i > index) index = i;
         return index;
     }
+
     /**
+     * @return void
      * @function sort
      * @noparam
-     * @return void
-     * **/
+     **/
     @Override
     public void sort() {
-        try{
+        try {
             Integer.valueOf((int) this.get(0));
         } catch (ClassCastException e) {
             return;
         }
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             for (int j = i; j < size; j++) {
                 if ((int) arr[j] < (int) arr[i]) {
                     T temp = arr[i];
@@ -169,13 +184,14 @@ public class MyArrayList<T> implements MyList {
             }
         }
     }
+
     /**
-     * @function checkIndex
      * @param index
      * @return void
-     * **/
-    private void checkIndex(int index){
-        if(index < 0 || index>=size){
+     * @function checkIndex
+     **/
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -185,4 +201,31 @@ public class MyArrayList<T> implements MyList {
         return Arrays.toString(arr);
 
     }
+
+    public void removeDuplicates() {
+
+        ArrayList<T> newList = new ArrayList<T>();
+
+
+        for (int i = 0; i < size; i++) {
+            T element = arr[i];
+
+
+            if (!newList.contains(element)) {
+                newList.add(element);
+            }
+        }
+
+
+        arr = (T[]) new Object[newList.size()];
+        for (int i = 0; i < newList.size(); i++) {
+            arr[i] = newList.get(i);
+        }
+        size = newList.size();
+    }
 }
+
+
+
+
+
