@@ -5,8 +5,7 @@ public class MyLinkedListStack<T> {
     MyLinkedList myLinkedList = new <T>MyLinkedList();
 
 
-        MyLinkedListStack() {
-        }
+    MyLinkedListStack() {}
 
         public void push(T element) {
             myLinkedList.add(element, 0);
@@ -23,6 +22,9 @@ public class MyLinkedListStack<T> {
             isEmptyThrowException();
             return (T) myLinkedList.get(0);
         }
+    public int size() {
+        return myLinkedList.size();
+    }
         private void isEmpty() {
             if (myLinkedList.size() == 0) throw new EmptyStackException();
 
@@ -33,6 +35,6 @@ public class MyLinkedListStack<T> {
             }
 
             public boolean isEmpty() {
-                return myLinkedList.size() == 0;
+                return this.size() == 0;
             }
         }
