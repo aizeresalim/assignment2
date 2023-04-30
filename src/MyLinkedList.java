@@ -17,7 +17,7 @@ public class MyLinkedList<E> implements MyList{
         size = 0;
     }
     /**
-     * @function size
+     * @function size returns the size LinkedList
      * @noparams
      * @return int
      * **/
@@ -26,8 +26,8 @@ public class MyLinkedList<E> implements MyList{
         return this.size;
     }
     /**
-     * @function contains true
-     * @param o
+     * @function contains true if Object o in LinkedList
+     * @param o object of searching
      * @return boolean
      * **/
     @Override
@@ -35,8 +35,8 @@ public class MyLinkedList<E> implements MyList{
         return (indexOf(o) != -1 ? true : false);
     }
     /**
-     * @function add
-     * @param item
+     * @function add - adds object in LinkedList
+     * @param item object to add
      * @return void
      * **/
     @Override
@@ -45,7 +45,6 @@ public class MyLinkedList<E> implements MyList{
         elements.add(item);
         size++;
     }
-
     private void createNode(E item) {
         Node<E> node = new Node<>(item);
         if (size == 0) {
@@ -56,16 +55,15 @@ public class MyLinkedList<E> implements MyList{
         }
         this.tail = node;
     }
-
     public void add(Object item, boolean notSave) {
         createNode((E) item);
         if (notSave) elements.add(item);
         size++;
     }
     /**
-     * @function add
-     * @param item
-     * @param index
+     * @function add adds object on particular index
+     * @param item object to add
+     * @param index index where to add item
      * @return void
      * **/
     @Override
@@ -74,194 +72,174 @@ public class MyLinkedList<E> implements MyList{
         Node oldNode = getNodeByIndex(index);
         Node node = new Node<E>((E) item);
         if (this.head.equals(oldNode)) {
-            node.next = this.head;
-            this.head.previous = node;
-            this.head = node;
-        } else if (this.tail.equals(oldNode)){
-            node.next = this.tail;
-            node.previous = this.tail.previous;
-            this.tail.previous.next = node;
-            this.tail.previous = node;
-        } else {
-            node.previous = oldNode.previous;
-            node.next = oldNode;
-            oldNode.previous.next = node;
-            oldNode.previous = node;
-        }
-        elements.add(item, index);
-        size++;
-    }
-    /**
-     * @function remove
-     * @param item
-     * @return boolean
-     * **/
-    @Override
-    public boolean remove(Object item) {
-        int objIndex = indexOf(item);
-        if (objIndex >= 0) {
-            remove(objIndex);
-            size--;
-            elements.remove(objIndex);
-            return true;
-        }
-        return false;
-    }
-    /**
-     * @function remove
-     * @param index
-     * @return Object
-     * **/
-    @Override
-    public Object remove(int index) {
-        checkIndex(index);
-        Node node = getNodeByIndex(index);
-
-        if (node.previous == null) {
-            this.head = node.next;
-            this.head.previous = null;
-        }
-        else if (node.next == null) {
-            this.tail = node.previous;
-            this.tail.next = null;
-        }
-        else {
-            node.previous.next = node.next;
-            node.next.previous = node.previous;
-        }
-        elements.remove(index);
-        this.size--;
-        return node.val;
-
-    }
-    /**
-     * @function clear
-     * @noparam
-     * @return void
-     * **/
-    @Override
-    public void clear() {
-        this.head = null;
-        this.tail = null;
-        size = 0;
-    }
-    /**
-     * @function get
-     * @param index
-     * @return E
-     * **/
-    @Override
-    public Object get(int index) {
-        checkIndex(index);
-        return getNodeByIndex(index).val;
-    }
-    /**
-     * @function indexOf
-     * @param o
-     * @return int
-     * **/
-    @Override
-    public int indexOf(Object o) {
-        int i = 0;
-        Node<E> nextNode = this.head;
-        while (nextNode != null) {
-            if (this.head.val.equals(o)) return i;
-            nextNode = nextNode.next;
-            i++;
-        }
-        return -1;
-    }
-    /**
-     * @function lastIndexOf
-     * @param o
-     * @return int
-     * **/
-    @Override
-    public int lastIndexOf(Object o) {
-        int i = size()-1;
-        Node<E> node = this.tail;
-        while (i >= 0) {
-            if (node.equals(o)) return i;
-            node = this.tail.previous;
-            i--;
-        }
-        return -1;
-    }
-    /**
-     * @function sort
-     * @noparam
-     * @return void
-     * **/
-    @Override
-    public void sort() {
-        try{
-            Integer.valueOf((int) this.get(0));
-        } catch (ClassCastException e) {
-            return;
-        }
-        elements.sort();
-        this.clear();
-        for (int i = 0; i < elements.size(); i++) {
-            this.add(elements.get(i), false);
-        }
-
-    }
-    /**
-     * @function getNodeByIndex
-     * @param index
-     * @return Node
-     * **/
-    private Node getNodeByIndex(int index) {
-        checkIndex(index);
-        Node toSearch;
-        toSearch = this.head;
-        while (index != 0) {
-            toSearch = toSearch.next;
-            index--;
-        }
-        return toSearch;
-    }
-    /**
-     * @function checkIndex
-     * @param index
-     * @return void
-     * **/
-    private void checkIndex(int index){
-        if(index < 0 || index>=size){
-            throw new IndexOutOfBoundsException();
-        }
-    }
-
-    @Override
-    public String toString() {
-        String out = "[";
-        Node<E> nextNode = this.head;
-        while (nextNode != null) {
-            out += nextNode.val + " ";
-            nextNode = nextNode.next;
-        }
-        return out + "]";
-    }
-
-    public void removeDuplicates() {
-        if (size <= 1) {
-            return; // no duplicates possible
-        }
-
-        Node<E> current = head;
-        while (current != null) {
-            Node<E> runner = current.next;
-            while (runner != null && runner.val.equals(current.val)) {
-                runner = runner.next;
+            if (oldNode == null) {
+                this.head = node;
             }
-            current.next = runner;
-            if (runner == null) {
-                tail = current;
+            else if (this.head.equals(oldNode)) {
+                node.next = this.head;
+                this.head.previous = node;
+                this.head = node;
+            } else if (this.tail.equals(oldNode)){
+                node.next = this.tail;
+                node.previous = this.tail.previous;
+                this.tail.previous.next = node;
+                this.tail.previous = node;
+            } else {
+                node.previous = oldNode.previous;
+                node.next = oldNode;
+                oldNode.previous.next = node;
+                oldNode.previous = node;
             }
-            current = current.next;
+            elements.add(item, index);
+            size++;
+        }
+        /**
+         * @function remove deletes object from LinkedList
+         * @param item object to delete
+         * @return boolean
+         * **/
+        @Override
+        public boolean remove(Object item) {
+            int objIndex = indexOf(item);
+            if (objIndex >= 0) {
+                remove(objIndex);
+                size--;
+                elements.remove(objIndex);
+                return true;
+            }
+            return false;
+        }
+        /**
+         * @function remove deletes object from LinkedList
+         * @param index index of element for deleting
+         * @return Object
+         * **/
+        @Override
+        public Object remove(int index) {
+            checkIndex(index);
+            Node node = getNodeByIndex(index);
+            if (node.previous == null) {
+                this.head = node.next;
+                this.head.previous = null;
+            }
+            else if (node.next == null) {
+                this.tail = node.previous;
+                this.tail.next = null;
+            }
+            else {
+                node.previous.next = node.next;
+                node.next.previous = node.previous;
+            }
+            elements.remove(index);
+            this.size--;
+            return node.val;
+        }
+        /**
+         * @function clear - clears LinkedList
+         * @noparam
+         * @return void
+         * **/
+        @Override
+        public void clear() {
+            this.head = null;
+            this.tail = null;
+            size = 0;
+        }
+        /**
+         * @function get returns object from LinkedList of its index
+         * @param index index of object
+         * @return E
+         * **/
+        @Override
+        public Object get(int index) {
+            checkIndex(index);
+            return getNodeByIndex(index).val;
+        }
+        /**
+         * @function indexOf returns index of first entering of an object
+         * @param o object to search
+         * @return int
+         * **/
+        @Override
+        public int indexOf(Object o) {
+            int i = 0;
+            Node<E> nextNode = this.head;
+            while (nextNode != null) {
+                if (this.head.val.equals(o)) return i;
+                nextNode = nextNode.next;
+                i++;
+            }
+            return -1;
+        }
+        /**
+         * @function lastIndexOf returns index of last entering of an object in  LinkedList
+         * @param o object to search
+         * @return int
+         * **/
+        @Override
+        public int lastIndexOf(Object o) {
+            int i = size()-1;
+            Node<E> node = this.tail;
+            while (i >= 0) {
+                if (node.equals(o)) return i;
+                node = this.tail.previous;
+                i--;
+            }
+            return -1;
+        }
+        /**
+         * @function sort - sorts LinkedList (bubble sort, O(n^2))
+         * @noparam
+         * @return void
+         * **/
+        @Override
+        public void sort() {
+            try{
+                Integer.valueOf((int) this.get(0));
+            } catch (ClassCastException e) {
+                return;
+            }
+            elements.sort();
+            this.clear();
+            for (int i = 0; i < elements.size(); i++) {
+                this.add(elements.get(i), false);
+            }
+        }
+        /**
+         * @function getNodeByIndex returns an element through index
+         * @param index
+         * @return Node
+         * **/
+        private Node getNodeByIndex(int index) {
+            if (index == 0) return this.head;
+            checkIndex(index);
+            Node toSearch;
+            toSearch = this.head;
+            while (index != 0) {
+                toSearch = toSearch.next;
+                index--;
+            }
+            return toSearch;
+        }
+        /**
+         * @function checkIndex checks index on its  validity
+         * @param index
+         * @return void
+         * **/
+        private void checkIndex(int index){
+            if(index < 0 || index>=size){
+                throw new IndexOutOfBoundsException();
+            }
+        }
+
+        @Override
+        public String toString() {
+            String out = "[";
+            Node<E> nextNode = this.head;
+            while (nextNode != null) {
+                out += nextNode.val + " ";
+                nextNode = nextNode.next;
+            }
+            return out + "]";
         }
     }
-
-
-}
-

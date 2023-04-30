@@ -1,7 +1,4 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-
-
 public class MyArrayList<T> implements MyList {
     private T[] arr;
     private int size;
@@ -18,12 +15,12 @@ public class MyArrayList<T> implements MyList {
 
     /**
      * @return void
-     * @function increaseBufferIfNeeded
+     * @function increaseBufferIfNeeded увеличиваем буфер массива
      * @noparams
      **/
     public void increaseBufferIfNeeded() {
         if (size == arr.length) {
-            T[] newArr = (T[]) new Object[arr.length * 2];
+            T[] newArr = (T[]) new Object[arr.length * 5];
             for (int i = 0; i < arr.length; i++) {
                 newArr[i] = arr[i];
             }
@@ -33,7 +30,7 @@ public class MyArrayList<T> implements MyList {
 
     /**
      * @return int
-     * @function size
+     * @function size выдает длину массива
      * @noparams
      **/
     @Override
@@ -42,9 +39,9 @@ public class MyArrayList<T> implements MyList {
     }
 
     /**
-     * @param o
+     * @param o объект поиска
      * @return boolean
-     * @function contains true
+     * @function contains true если Object o в массиве
      **/
     @Override
     public boolean contains(Object o) {
@@ -55,9 +52,9 @@ public class MyArrayList<T> implements MyList {
     }
 
     /**
-     * @param item
+     * @param item объект для добавления
      * @return void
-     * @function add
+     * @function add добавляет объект в массив
      **/
     @Override
     public void add(Object item) {
@@ -66,10 +63,10 @@ public class MyArrayList<T> implements MyList {
     }
 
     /**
-     * @param item
-     * @param index
+     * @param item  объект для добавления
+     * @param index индекс куда нужно добавить item
      * @return void
-     * @function add
+     * @function add добавляет объект на определенный индекс
      **/
     @Override
     public void add(Object item, int index) {
@@ -83,9 +80,9 @@ public class MyArrayList<T> implements MyList {
     }
 
     /**
-     * @param item
+     * @param item объект удаления
      * @return boolean
-     * @function remove
+     * @function remove удаляет объект из массива
      **/
     // Complexity: 0(n^2)
     @Override
@@ -99,9 +96,9 @@ public class MyArrayList<T> implements MyList {
     }
 
     /**
-     * @param index
+     * @param index индекст элемента для удаления
      * @return Object
-     * @function remove
+     * @function remove удаляет объект из массива
      **/
     @Override
     public Object remove(int index) {
@@ -116,7 +113,7 @@ public class MyArrayList<T> implements MyList {
 
     /**
      * @return void
-     * @function clear
+     * @function clear очищает массив
      * @noparam
      **/
     public void clear() {
@@ -125,9 +122,9 @@ public class MyArrayList<T> implements MyList {
     }
 
     /**
-     * @param index
+     * @param index индекс объекта
      * @return Object
-     * @function get
+     * @function get возвращает объект из массива под его индексом
      **/
     @Override
     public Object get(int index) {
@@ -136,9 +133,9 @@ public class MyArrayList<T> implements MyList {
     }
 
     /**
-     * @param o
+     * @param o объект для поиска
      * @return int
-     * @function indexOf
+     * @function indexOf возвращает индекс первого вхождения объекта
      **/
     @Override
     public int indexOf(Object o) {
@@ -151,9 +148,9 @@ public class MyArrayList<T> implements MyList {
     }
 
     /**
-     * @param o
+     * @param o объект для поиска
      * @return int
-     * @function lastIndexOf
+     * @function lastIndexOf возвращает индекс последнего вхождения объекта в массив
      **/
     @Override
     public int lastIndexOf(Object o) {
@@ -164,7 +161,7 @@ public class MyArrayList<T> implements MyList {
 
     /**
      * @return void
-     * @function sort
+     * @function sort сортирует массив (bubble sort, O(n^2))
      * @noparam
      **/
     @Override
@@ -186,9 +183,9 @@ public class MyArrayList<T> implements MyList {
     }
 
     /**
-     * @param index
+     * @param index индекс
      * @return void
-     * @function checkIndex
+     * @function checkIndex проверяет индекс на его валидность в рамках структуры данных
      **/
     private void checkIndex(int index) {
         if (index < 0 || index >= size) {
@@ -199,31 +196,26 @@ public class MyArrayList<T> implements MyList {
     @Override
     public String toString() {
         return Arrays.toString(arr);
-
     }
 
-    public void removeDuplicates() {
-
-        ArrayList<T> newList = new ArrayList<T>();
-
-
-        for (int i = 0; i < size; i++) {
-            T element = arr[i];
-
-
-            if (!newList.contains(element)) {
-                newList.add(element);
+    public void addAllByIndex(T[] elements, int index) {
+        increaseBufferIfNeeded();
+        T[] left = (T[]) new Object[arr.length + elements.length];
+        for (int i = 0; i < index; i++) {
+            left[i] = arr[i];
+        }
+        int j = 0;
+        for (int i = index; i < index + elements.length; i++) {
+            left[i] = (T) elements[j++];
+        }
+        for (int i = index; i < size; i++) {
+            for (int i = index; i < this.size; i++) {
+                left[++j] = arr[index];
             }
+            this.size += elements.length;
+            this.arr = left;
         }
-
-
-        arr = (T[]) new Object[newList.size()];
-        for (int i = 0; i < newList.size(); i++) {
-            arr[i] = newList.get(i);
-        }
-        size = newList.size();
     }
-}
 
 
 
