@@ -10,5 +10,14 @@ public class MyArrayListStack<T> {
     public void push(T element) {
         myArrayList.add(element, 0);
     }
+    public T pop() {
+        isEmptyThrowException();
+        return (T) myArrayList.remove(0);
+    }
+
+    public T peek() {
+        isEmptyThrowException();
+        return (T) myArrayList.get(0);
+    }
 
 
