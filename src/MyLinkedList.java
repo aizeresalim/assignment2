@@ -118,7 +118,11 @@ public class MyLinkedList<E> implements MyList{
         public Object remove(int index) {
             checkIndex(index);
             Node node = getNodeByIndex(index);
-            if (node.previous == null) {
+            if (node.next == null && node.previous == null) {
+                this.head = null;
+                this.tail = null;
+            }
+            else if (node.previous == null) {
                 this.head = node.next;
                 this.head.previous = null;
             }
