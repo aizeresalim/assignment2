@@ -1,4 +1,4 @@
-import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
 
 public class MyLinkedListQueue<T> {
     MyLinkedList myLinkedList = new <T>MyLinkedList();
@@ -28,9 +28,9 @@ public class MyLinkedListQueue<T> {
         return myLinkedList.size();
     }
 
-    private void isEmptyThrowException() {
+    private void isEmptyThrowException() throws NoSuchFieldException {
         if (isEmpty()) {
-            throw new EmptyStackException();
+            throw new NoSuchFieldException();
         }
     }
 
