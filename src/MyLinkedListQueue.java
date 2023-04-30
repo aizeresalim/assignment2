@@ -14,12 +14,12 @@ public class MyLinkedListQueue<T> {
         return (T) myLinkedList.remove(0);
     }
 
-    public T pop() {
+    public T pop() throws NoSuchFieldException {
         isEmptyThrowException();
         return (T) myLinkedList.remove(0);
     }
 
-    public T peek() {
+    public T peek() throws NoSuchFieldException {
         isEmptyThrowException();
         return (T) myLinkedList.get(0);
     }
