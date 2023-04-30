@@ -19,5 +19,17 @@ public class MyArrayListStack<T> {
         isEmptyThrowException();
         return (T) myArrayList.get(0);
     }
+    public int size() {
+        return myArrayList.size();
+    }
+    private void isEmptyThrowException() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+    }
 
+    public boolean isEmpty() {
+        return this.size() == 0;
+    }
+}
 
