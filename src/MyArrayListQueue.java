@@ -41,6 +41,10 @@ public class MyArrayListQueue<T> {
             throw new NoSuchFieldException();
         }
     }
+    /**
+     Returns true if the queue is empty, false otherwise.
+     @return True if the queue is empty, false otherwise.
+     */
 
     public boolean isEmpty() {
         return this.size() == 0;
