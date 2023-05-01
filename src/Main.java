@@ -31,16 +31,12 @@ public class Main {
         System.out.println(myLinkedListStack.pop());
         System.out.println(myLinkedListStack.peek());
 
-//
-////      ## MyArrayListQueue
-//        System.out.println("MyArrayListQueue");
-//        MyArrayListStack  = new <Integer>MyArrayListStack();
-//        myLinkedListStack.push(1);
-//        myLinkedListStack.push(2);
-//        myLinkedListStack.push(3);
-//        System.out.println(myLinkedListStack.pop());
-//        System.out.println(myLinkedListStack.pop());
-//        System.out.println(myLinkedListStack.peek());
+//      ## MyArrayListQueue
+        System.out.println("MyArrayListQueue");
+        MyArrayListQueue myArrayListQueue = new <Integer>MyArrayListQueue();
+        myArrayListQueue.enqueue(1);
+        myArrayListQueue.enqueue(2);
+        myArrayListQueue.enqueue(3);
     }
 }
 
