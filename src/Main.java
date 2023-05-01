@@ -24,7 +24,12 @@ public class Main {
 //     ## MyArrayListStack
         System.out.println("MyArrayListStack");
         MyArrayListStack myArrayListStack = new <Integer>MyArrayListStack();
-
+        myArrayListStack.push(1);
+        myArrayListStack.push(2);
+        myArrayListStack.push(3);
+        System.out.println(myArrayListStack.pop());
+        System.out.println(myArrayListStack.pop());
+        System.out.println(myArrayListStack.peek());
 //      ## MyArrayListQueue
         System.out.println("MyArrayListQueue");
         MyArrayListQueue myArrayListQueue = new <Integer>MyArrayListQueue();
