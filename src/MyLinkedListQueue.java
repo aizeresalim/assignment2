@@ -5,10 +5,16 @@ public class MyLinkedListQueue<T> {
 
     MyLinkedListQueue() {
     }
-
+    /**
+     Adds an element to the back of the queue.
+     @param element The element to be added.
+     */
     public void enqueue(T element) {
         myLinkedList.add(element);
     }
+    /**
+     Remove elements from the front of queue
+     */
 
     public T dequeue() {
         return (T) myLinkedList.remove(0);
