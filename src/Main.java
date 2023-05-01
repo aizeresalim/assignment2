@@ -37,6 +37,9 @@ public class Main {
         myArrayListQueue.enqueue(1);
         myArrayListQueue.enqueue(2);
         myArrayListQueue.enqueue(3);
+        System.out.println(myArrayListQueue.dequeue());
+        System.out.println(myArrayListQueue.dequeue());
+        System.out.println(myArrayListQueue.peek());
     }
 }
 
