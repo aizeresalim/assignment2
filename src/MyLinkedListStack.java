@@ -35,9 +35,17 @@ public class MyLinkedListStack<T> {
             isEmptyThrowException();
             return (T) myLinkedList.get(0);
         }
+    /**
+     Returns the number of elements in the stack.
+     @return The number of elements in the stack.
+     */
     public int size() {
         return myLinkedList.size();
     }
+    /**
+     Returns the number of elements in the queue.
+     @return The number of elements in the queue.
+     */
         private void isEmpty() {
             if (myLinkedList.size() == 0) throw new EmptyStackException();
 
@@ -46,6 +54,10 @@ public class MyLinkedListStack<T> {
                     throw new EmptyStackException();
                 }
             }
+            /**
+             Returns true if the stack is empty, false otherwise.
+             @return True if the stack is empty, false otherwise.
+             */
 
             public boolean isEmpty() {
                 return this.size() == 0;
